@@ -58,7 +58,7 @@ function addStripeSidebar(threadView, customer) {
 		threadView.addSidebarContentPanel({
 			el: sidebarForThread.get(threadView),
 			title: "Stripe Customers",
-			iconUrl: chrome.runtime.getURL('stripe.png')
+			iconUrl: chrome.runtime.getURL('images/stripe.png')
 		});
 	}
 
@@ -105,7 +105,7 @@ function formatStripeCurrency(amount, digits) {
 function transformCustomer(customer) {
   for (var i = 0; i < customer.sources.data.length; i++) {
     var source = customer.sources.data[i];
-    source.imageUrl = chrome.runtime.getURL('cards/' + source.brand  + '.png');
+    source.imageUrl = chrome.runtime.getURL('images/cards/' + source.brand  + '.png');
   }
   customer.dashboardURL = "https://dashboard.stripe.com/customers/" + customer.id;
 }
@@ -129,14 +129,14 @@ function transformSubscriptions(subscriptions) {
 function transformInvoices(invoices) {
   for (var i = 0; i < invoices.data.length; i++) {
     var inv = invoices.data[i];
-    inv.imageUrl = inv.paid ? chrome.runtime.getURL('paid.png') : chrome.runtime.getURL('unpaid.png');
+    inv.imageUrl = inv.paid ? chrome.runtime.getURL('images/paid.png') : chrome.runtime.getURL('images/unpaid.png');
   }
 }
 
 function transformCharges(charges) {
   for (var i = 0; i < charges.data.length; i++) {
     var chg = charges.data[i];
-    chg.imageUrl = chg.status == "succeeded" ? chrome.runtime.getURL('paid.png') : chrome.runtime.getURL('unpaid.png');
+    chg.imageUrl = chg.status == "succeeded" ? chrome.runtime.getURL('images/paid.png') : chrome.runtime.getURL('images/unpaid.png');
   }
 }
 
@@ -156,7 +156,7 @@ function createStats(customer, subscriptions, invoices, charges) {
 
 function addStripeIndicatorToThreadRow(threadRowView, email) {
 	threadRowView.addImage({
-		imageUrl: chrome.runtime.getURL('stripe.png'),
+		imageUrl: chrome.runtime.getURL('images/stripe.png'),
 		tooltip: email,
     imageClass: "rounded_stripe"
 	});
